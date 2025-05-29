@@ -1,0 +1,15 @@
+/* src/index.css o src/App.css */
+
+body {
+  color: black;
+  background-color: white;
+  margin: 0;
+  font-family: sans-serif;
+}
+
+#root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}

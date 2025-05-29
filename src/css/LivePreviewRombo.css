@@ -1,0 +1,56 @@
+.rombo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.rombo-outer {
+  width: 540px;
+  height: 540px;
+  background-color: black; /* Borde visible */
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease;
+}
+
+.rombo-outer:hover {
+  transform: scale(1.03);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7);
+}
+
+.rombo-inner {
+  width: 500px;
+  height: 500px;
+  background-color: white; /* Se sobrescribe por inline style */
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  transition: background-color 0.3s ease;
+  color: #000;
+  font-size: 5rem;
+  user-select: none;
+  padding: 10px;
+  text-align: center;
+  position: relative;
+}
+
+.rombo-logo {
+  width: 50%;
+  height: auto;
+  object-fit: contain;
+  margin-bottom: 15px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+}
+
+.rombo-number {
+  font-size: 3.5rem;
+  font-weight: bold;
+  line-height: 1;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
