@@ -51,12 +51,7 @@ function AppContent() {
     setSelectedSymbol(symbol);
     setSelectedSymbolPosition(position);
     console.log(`Símbolo ${symbol.name} soltado en posición: ${position}`);
-    if (currentStep === 2) setCurrentStep(3);
-  };
-
-  const handleNumberSelect = (numberValue: string) => {
-    setSelectedNumber(numberValue === 'Sin Número' ? null : numberValue);
-    if (currentStep === 3) setCurrentStep(4);
+    setCurrentStep((prev) => (prev === 2 ? 3 : prev));
   };
 
   // --- Cambio automático de paso cuando hay color sup/inf ---
@@ -67,30 +62,6 @@ function AppContent() {
   }, [selectedTopColor, selectedBottomColor, currentStep]);
 
   // --- Reset general ---
-  const handleReset = () => {
-    setCurrentStep(1);
-    setSelectedTopColor(null);
-    setSelectedBottomColor(null);
-    setSelectedSymbol(null);
-    setSelectedSymbolPosition(null);
-    setSelectedNumber(null);
-  };
-
-  const goToStep = (step: number) => {
-    if (step < currentStep) {
-      setCurrentStep(step);
-      if (step === 1) {
-        setSelectedSymbol(null);
-        setSelectedSymbolPosition(null);
-        setSelectedNumber(null);
-      } else if (step === 2) {
-        setSelectedSymbolPosition(null);
-        setSelectedNumber(null);
-      } else if (step === 3) {
-        setSelectedNumber(null);
-      }
-    }
-  };
 
   return (
     <div className="appContainer">
@@ -111,7 +82,7 @@ function AppContent() {
             onSymbolDrop={handleSymbolDrop}
             onNumberDrop={(num) => {
               setSelectedNumber(num === 'Sin Número' ? null : num);
-              if (currentStep === 3) setCurrentStep(4);
+              setCurrentStep((prev) => (prev === 3 ? 4 : prev));
             }}
           />
         </section>
@@ -123,25 +94,22 @@ function AppContent() {
 
           {currentStep === 2 && (
             <>
-              <button onClick={() => goToStep(1)} className="backButton">← Cambiar Colores</button>
+
               <LogoPicker symbols={availableSymbols} title="Paso 2: Arrastra un Símbolo (Arriba/Abajo)" />
             </>
           )}
 
           {currentStep === 3 && (
             <>
-              <button onClick={() => goToStep(2)} className="backButton">← Cambiar Símbolo</button>
               <NumberPicker
                 numbers={availableNumbers}
-                onSelectNumber={handleNumberSelect}
-                title="Paso 3: Elige Número (Clic)"
+                title="Paso 3: Elige Número"
               />
             </>
           )}
 
           {currentStep === 4 && (
             <div className="summarySection">
-              <button onClick={() => goToStep(3)} className="backButton">← Cambiar Número</button>
               <h2>¡Pictograma Configurado!</h2>
               <p><strong>Color Superior:</strong> {selectedTopColor?.name || 'No seleccionado'}</p>
               <p><strong>Color Inferior:</strong> {selectedBottomColor?.name || 'No seleccionado'}</p>
@@ -150,11 +118,6 @@ function AppContent() {
             </div>
           )}
 
-          {currentStep > 0 && (
-            <button onClick={handleReset} className="resetButtonGeneral" style={{ marginTop: currentStep === 1 ? '20px' : '0' }}>
-              Empezar de Nuevo
-            </button>
-          )}
         </section>
       </main>
     </div>

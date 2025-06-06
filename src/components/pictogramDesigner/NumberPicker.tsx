@@ -1,25 +1,25 @@
+// src/components/pictogramDesigner/NumberPicker.tsx
 import React from 'react';
-import './NumberPicker.css';
+import DraggableNumberSwatch from './DraggableNumberSwatch'; // ✨ Importa el nuevo componente arrastrable
+import './NumberPicker.css'; // Tu archivo CSS donde está .number-picker-main-container, etc.
 
 interface NumberPickerProps {
-  numbers: string[]; // Recibe los números (strings) como prop
-  onSelectNumber: (numberValue: string) => void; // Espera un string
+  numbers: string[]; // Recibe la lista de números disponibles
   title?: string;
+  // La prop 'onSelectNumber' ya no es necesaria si la selección es solo por drag and drop
 }
 
-const NumberPicker: React.FC<NumberPickerProps> = ({ numbers, onSelectNumber, title }) => {
+const NumberPicker: React.FC<NumberPickerProps> = ({ numbers, title }) => {
   return (
-    <div className="number-picker-container">
+    <div className="number-picker-main-container"> {/* Contenedor principal con título arriba */}
       {title && <h2>{title}</h2>}
-      <div className="number-options">
-        {numbers.map((numberValue) => (
-          <button
-            key={numberValue}
-            onClick={() => onSelectNumber(numberValue)} // Pasa el string
-            className="number-button"
-          >
-            {numberValue}
-          </button>
+      <div className="number-options-wrapper">   {/* Contenedor para las cartillas en fila */}
+        {numbers.map((numValue) => (
+          // ✨ Renderiza el componente arrastrable para cada número
+          <DraggableNumberSwatch 
+            key={numValue} 
+            numberValue={numValue} 
+          />
         ))}
       </div>
     </div>
