@@ -54,3 +54,44 @@
   line-height: 1;
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
 }
+
+/* ... tu CSS existente ... */
+
+.rombo-drop-hint {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 0.8rem;
+  color: #777;
+  text-align: center;
+  pointer-events: none; /* Para que no interfiera con el drop */
+  line-height: 1.2;
+}
+
+/* Estilos para el logo y número (para asegurar que estén encima de las zonas de drop) */
+.rombo-logo {
+  width: 50%; /* O el tamaño que prefieras */
+  height: auto; /* O un tamaño fijo */
+  max-height: 40%; /* Evita que sea demasiado grande */
+  object-fit: contain;
+  position: absolute;
+  top: 30%; /* Ajusta para centrarlo mejor en la mitad superior, o general */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 10; /* Encima de las zonas de drop */
+}
+
+.rombo-number {
+  font-size: 2.5rem; /* Ajusta según el tamaño del rombo */
+  font-weight: bold;
+  line-height: 1;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  position: absolute;
+  bottom: 10%; /* Ajusta para que esté en la parte inferior del rombo */
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none;
+  z-index: 10; /* Encima de las zonas de drop */
+}

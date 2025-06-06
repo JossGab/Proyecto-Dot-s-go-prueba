@@ -1,0 +1,57 @@
+/* src/components/pictogramDesigner/NumberPicker.css (o .module.css) */
+
+/* Contenedor principal para el título Y el grupo de opciones de número */
+.number-picker-main-container { /* Nueva clase para el contenedor principal */
+  display: flex;
+  flex-direction: column; /* Título arriba, div de opciones de número abajo */
+  align-items: center;   /* Centra el título y el bloque de opciones horizontalmente */
+  gap: 10px;             /* Espacio entre el título y el bloque de opciones */
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.number-picker-main-container h2 {
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+/* Tu anterior .number-picker-container, ahora para las opciones */
+.number-options-wrapper { 
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin: 0; /* Quitamos el margen que tenía antes .number-picker-container */
+  flex-wrap: wrap; /* Para que los botones se envuelvan si no caben */
+  padding: 10px;
+}
+
+/* Estilos para cada botón/cartilla de número (tus estilos son buenos) */
+.number-button {
+  background-color: white;
+  border: 2px solid #000000; /* Cambié a borde negro para consistencia, puedes ajustarlo */
+  color: #000000;
+  font-size: 1.5rem; /* Tamaño de fuente para el número */
+  width: 70px;   /* Ancho tipo carta (ajustado ligeramente) */
+  height: 100px; /* Alto tipo carta */
+  border-radius: 12px;
+  cursor: pointer; /* Cambiará a 'grab' en el componente arrastrable */
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+  font-weight: bold; /* Para que el número resalte */
+}
+
+.number-button:hover,
+.number-button:focus {
+  background-color: #000000; /* Fondo negro al hover */
+  color: white;              /* Texto blanco */
+  border-color: #333;        /* Borde un poco más oscuro */
+  outline: none;
+  transform: translateY(-6px) scale(1.08); /* Efecto hover sutil */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}

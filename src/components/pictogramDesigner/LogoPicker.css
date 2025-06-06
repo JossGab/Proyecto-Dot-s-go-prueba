@@ -1,0 +1,73 @@
+/* src/components/pictogramDesigner/LogoPicker.css (o .module.css) */
+
+/* Contenedor principal para el título Y el grupo de opciones de logo */
+.logo-picker-main-container { /* Cambié el nombre para evitar confusión con tu .logo-picker-container original */
+  display: flex;
+  flex-direction: column; /* Título arriba, div de opciones de logo abajo */
+  align-items: center;   /* Centra el título y el bloque de opciones horizontalmente */
+  gap: 10px;             /* Espacio entre el título y el bloque de opciones */
+  margin-bottom: 20px;
+  width: 100%; /* Para que ocupe el ancho disponible en la sección de controles */
+}
+
+.logo-picker-main-container h2 {
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+/* Este es tu anterior .logo-picker-container, ahora para las opciones */
+.logo-options-wrapper {
+  display: flex;
+  justify-content: center;
+  gap: 15px; /* Espacio entre cartillas */
+  margin: 0; /* Quitamos el margen que tenía antes .logo-picker-container */
+  flex-wrap: wrap;
+  padding: 10px;
+}
+
+/* Estilos para cada botón/cartilla de logo */
+.logo-button { /* Mantenemos tus buenos estilos para los botones */
+  width: 70px;
+  height: 100px;
+  border: 2px solid #ddd; /* Borde inicial un poco más visible */
+  background: white;
+  padding: 10px;
+  cursor: pointer; /* Cambiará a 'grab' en el componente arrastrable */
+  border-radius: 12px;
+  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column; /* Para poner el nombre debajo del logo si decides añadirlo */
+  justify-content: center;
+  align-items: center;
+  transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden; /* Por si el contenido se desborda */
+}
+
+.logo-button img {
+  width: 45px; /* Un poco más grande si caben en 70px de ancho de botón */
+  height: 45px;
+  object-fit: contain;
+  margin-bottom: 5px; /* Espacio si añades texto debajo */
+}
+
+/* Contenedor para el nombre del logo (opcional, dentro del botón) */
+.logo-name-text {
+    font-size: 0.7rem;
+    color: #555;
+    text-align: center;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+.logo-button:hover,
+.logo-button:focus {
+  border-color: #3b82f6; /* Un color de hover más distintivo */
+  transform: translateY(-6px) scale(1.08); /* Ajuste ligero del hover */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  outline: none;
+}
