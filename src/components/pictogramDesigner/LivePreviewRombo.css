@@ -1,3 +1,5 @@
+/* src/components/pictogramDesigner/LivePreviewRombo.css */
+
 .rombo-container {
   display: flex;
   justify-content: center;
@@ -6,9 +8,9 @@
 }
 
 .rombo-outer {
-  width: 540px;
-  height: 540px;
-  background-color: black; /* Borde visible */
+  width: 300px; /* Reduje el tamaño para que sea más manejable en la UI */
+  height: 300px;
+  background-color: black;
   clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
   display: flex;
   justify-content: center;
@@ -19,79 +21,77 @@
 
 .rombo-outer:hover {
   transform: scale(1.03);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7);
 }
 
 .rombo-inner {
-  width: 500px;
-  height: 500px;
-  background-color: white; /* Se sobrescribe por inline style */
+  width: 280px; /* Un poco más pequeño para que el borde exterior sea visible */
+  height: 280px;
+  /* El background se define dinámicamente en el componente */
   clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
-  transition: background-color 0.3s ease;
-  color: #000;
-  font-size: 5rem;
-  user-select: none;
-  padding: 10px;
-  text-align: center;
-  position: relative;
+  position: relative; /* Muy importante para el posicionamiento absoluto de los hijos */
 }
 
+/* --- ESTILOS MEJORADOS PARA LOGO Y NÚMERO --- */
+
 .rombo-logo {
-  width: 50%;
-  height: auto;
+  /* Estilos estáticos */
+  max-width: 50%; /* Máximo ancho relativo al rombo */
+  max-height: 40%; /* Máxima altura */
   object-fit: contain;
-  margin-bottom: 15px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+  pointer-events: none; /* Para no interferir con el drop */
+  z-index: 10;
+  transition: top 0.3s ease, bottom 0.3s ease, transform 0.3s ease, left 0.3s ease; /* Transiciones suaves */
+  
+  /* Efecto de sombra sutil para darle profundidad */
+  filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.3)); 
 }
 
 .rombo-number {
-  font-size: 3.5rem;
-  font-weight: bold;
+  /* Estilos estáticos */
+  font-family: 'Roboto', sans-serif; /* Fuente importada */
+  font-weight: 900; /* Un grosor de fuente impactante */
   line-height: 1;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  pointer-events: none;
+  z-index: 10;
+  text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.4);
+  transition: top 0.3s ease, bottom 0.3s ease, transform 0.3s ease, left 0.3s ease, font-size 0.3s ease;
 }
-
-/* ... tu CSS existente ... */
 
 .rombo-drop-hint {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 0.8rem;
-  color: #777;
+  font-size: 0.9rem;
+  font-family: 'Roboto', sans-serif;
+  color: #888;
   text-align: center;
-  pointer-events: none; /* Para que no interfiera con el drop */
-  line-height: 1.2;
+  pointer-events: none;
+  line-height: 1.3;
 }
 
-/* Estilos para el logo y número (para asegurar que estén encima de las zonas de drop) */
-.rombo-logo {
-  width: 50%; /* O el tamaño que prefieras */
-  height: auto; /* O un tamaño fijo */
-  max-height: 40%; /* Evita que sea demasiado grande */
-  object-fit: contain;
-  position: absolute;
-  top: 30%; /* Ajusta para centrarlo mejor en la mitad superior, o general */
-  left: 50%;
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-  z-index: 10; /* Encima de las zonas de drop */
+.rombo-inner {
+  width: 280px;
+  height: 280px;
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 1;
 }
 
-.rombo-number {
-  font-size: 2.5rem; /* Ajusta según el tamaño del rombo */
-  font-weight: bold;
-  line-height: 1;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+/* Borde interno negro */
+.rombo-inner::before {
+  content: "";
   position: absolute;
-  bottom: 10%; /* Ajusta para que esté en la parte inferior del rombo */
-  left: 50%;
-  transform: translateX(-50%);
+  top: 5px;
+  left: 5px;
+  right: 5px;
+  bottom: 5px;
+  clip-path: inherit;
+  border: 2px solid black;
+  z-index: 2; /* sobre el fondo, debajo del contenido */
   pointer-events: none;
-  z-index: 10; /* Encima de las zonas de drop */
 }
